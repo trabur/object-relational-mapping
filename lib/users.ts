@@ -1,7 +1,7 @@
 // libraries
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
-var jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 import { v4 as uuidv4 } from 'uuid';
 
 // elixir socket
@@ -17,12 +17,24 @@ channel.join()
   .receive("error", ({ reason }: any) => console.log("failed to join MAIN channel", reason))
   .receive("timeout", () => console.log("still waiting..."))
 
+// listener references
+let ref1: any
+let ref2: any
+let ref3: any
+
+// quit listening
+function stop () {
+  channel.off("room:register", ref1)
+  channel.off("room:login", ref2)
+  channel.off("room:users", ref3)
+}
+
 /**
  * methods
  */
 function init () {
-  // functions
-  channel.on("room:register", function (data: any) {
+  // listener functions
+  ref1 = channel.on("room:register", function (data: any) {
     console.log('sign:data:', data.message.sign)
     let msg = jwt.sign(data.message.sign, '1337-secret-shhhhh', { expiresIn: '1h' })
 
@@ -32,7 +44,7 @@ function init () {
     })
   })
 
-  channel.on("room:login", function (data: any) {
+  ref2 = channel.on("room:login", function (data: any) {
     console.log('verify:token:', data.message.token)
     let msg = jwt.verify(data.message.token, '1337-secret-shhhhh', { expiresIn: '1h' })
 
@@ -42,7 +54,7 @@ function init () {
     })
   })
 
-  channel.on("room:users", async function (data: any) {
+  ref3 = channel.on("room:users", async function (data: any) {
     const allUsers = await prisma.user.findMany()
 
     channel.push("room:broadcast", {
@@ -52,13 +64,9 @@ function init () {
   })
 }
 
-function demo () {
+function all () {
   let outputRoom1 = uuidv4()
-  let outputRoom2 = uuidv4()
   channel.on(`room:${outputRoom1}`, async function (message: any) {
-    console.log(message)
-  })
-  channel.on(`room:${outputRoom2}`, async function (message: any) {
     console.log(message)
   })
   channel.push("room:broadcast", {
@@ -69,8 +77,25 @@ function demo () {
     }
   })
 }
+  
+function login (username: any, password: any) {
+  let outputRoom2 = uuidv4()
+  channel.on(`room:${outputRoom2}`, async function (message: any) {
+    console.log(message)
+  })
+  channel.push("room:broadcast", {
+    room: 'login',
+    message: {
+      username,
+      password,
+      output: outputRoom2
+    }
+  })
+}
 
-export default {
+export {
+  stop,
   init,
-  demo
+  all,
+  login
 }
