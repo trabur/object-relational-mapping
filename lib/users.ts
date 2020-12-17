@@ -32,7 +32,7 @@ function stop () {
 /**
  * methods
  */
-function init () {
+function run () {
   // listener functions
   ref1 = channel.on("room:register", function (data: any) {
     console.log('sign:data:', data.message.sign)
@@ -95,7 +95,7 @@ function login (username: any, password: any) {
 
 export {
   stop,
-  init,
+  run,
   all,
   login
 }

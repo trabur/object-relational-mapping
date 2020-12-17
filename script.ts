@@ -1,7 +1,7 @@
 import * as users from './lib/users'
 
-// start library
-users.init()
+// init library
+users.run()
 
 // show all
 users.all()
