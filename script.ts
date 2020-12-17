@@ -9,7 +9,7 @@ users.all(function (message: any) {
 })
 
 // auth confirm
-// let email = 'test2@test.com'
+// let email = 'test3@test.com'
 // let username = 'testman'
 // let password = '1234567'
 // users.register(email, username, password, function (message: any) {

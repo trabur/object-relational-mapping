@@ -22,56 +22,32 @@ let ref1: any
 let ref2: any
 let ref3: any
 
-// quit listening
-function stop () {
+
+// listener functions
+import onRegister from './users/onRegister'
+import onLogin from './users/onLogin'
+import onUsers from './users/onUsers'
+
+/******
+ * trigger methods
+ ******/
+function run () { 
+  // start listening
+  ref1 = channel.on("room:register", onRegister(prisma, channel))
+  ref2 = channel.on("room:login", onLogin(prisma, channel))
+  ref3 = channel.on("room:users", onUsers(prisma, channel))
+}
+
+function stop () { 
+  // quit listening
   channel.off("room:register", ref1)
   channel.off("room:login", ref2)
   channel.off("room:users", ref3)
 }
 
-/**
- * methods
- */
-function run () {
-  // listener functions
-  ref1 = channel.on("room:register", async function (data: any) {
-
-    const user = await prisma.user.create({ data: data.message.payload })
-
-    // console.log('sign:data:', data.message.sign)
-    // let msg = jwt.sign(data.message.sign, '1337-secret-shhhhh', { expiresIn: '1h' })
-
-    channel.push("room:broadcast", {
-      room: data.message.output,
-      message: user
-    })
-  })
-
-  ref2 = channel.on("room:login", async function (data: any) {
-    
-    const user = await prisma.user.findOne({
-      where: data
-    })
-
-    // console.log('verify:token:', data.message.token)
-    // let msg = jwt.verify(data.message.token, '1337-secret-shhhhh', { expiresIn: '1h' })
-
-    channel.push("room:broadcast", {
-      room: data.message.output,
-      message: user
-    })
-  })
-
-  ref3 = channel.on("room:users", async function (data: any) {
-    const allUsers = await prisma.user.findMany()
-
-    channel.push("room:broadcast", {
-      room: data.message.output,
-      message: allUsers
-    })
-  })
-}
-
+/******
+ * trigger actions
+ ******/
 function all (callback: any) {
   let outputRoom1 = uuidv4()
   channel.on(`room:${outputRoom1}`, callback)
@@ -114,6 +90,9 @@ function login (email: any, password: any, callback: any) {
   })
 }
 
+/******
+ * trigger library
+ ******/
 export {
   stop,
   run,
