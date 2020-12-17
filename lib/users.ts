@@ -34,23 +34,31 @@ function stop () {
  */
 function run () {
   // listener functions
-  ref1 = channel.on("room:register", function (data: any) {
-    console.log('sign:data:', data.message.sign)
-    let msg = jwt.sign(data.message.sign, '1337-secret-shhhhh', { expiresIn: '1h' })
+  ref1 = channel.on("room:register", async function (data: any) {
+
+    const user = await prisma.user.create({ data: data.message.payload })
+
+    // console.log('sign:data:', data.message.sign)
+    // let msg = jwt.sign(data.message.sign, '1337-secret-shhhhh', { expiresIn: '1h' })
 
     channel.push("room:broadcast", {
       room: data.message.output,
-      message: msg
+      message: user
     })
   })
 
-  ref2 = channel.on("room:login", function (data: any) {
-    console.log('verify:token:', data.message.token)
-    let msg = jwt.verify(data.message.token, '1337-secret-shhhhh', { expiresIn: '1h' })
+  ref2 = channel.on("room:login", async function (data: any) {
+    
+    const user = await prisma.user.findOne({
+      where: data
+    })
+
+    // console.log('verify:token:', data.message.token)
+    // let msg = jwt.verify(data.message.token, '1337-secret-shhhhh', { expiresIn: '1h' })
 
     channel.push("room:broadcast", {
       room: data.message.output,
-      message: msg
+      message: user
     })
   })
 
@@ -72,23 +80,42 @@ function all () {
   channel.push("room:broadcast", {
     room: 'users',
     message: {
-      sign: { userId: 1 },
       output: outputRoom1
     }
   })
 }
   
-function login (username: any, password: any) {
+function register (email: any, username: any, password: any) {
   let outputRoom2 = uuidv4()
   channel.on(`room:${outputRoom2}`, async function (message: any) {
     console.log(message)
   })
   channel.push("room:broadcast", {
+    room: 'register',
+    message: {
+      payload: {
+        email,
+        username,
+        password,
+      },
+      output: outputRoom2
+    }
+  })
+}
+
+function login (email: any, password: any) {
+  let outputRoom3 = uuidv4()
+  channel.on(`room:${outputRoom3}`, async function (message: any) {
+    console.log(message)
+  })
+  channel.push("room:broadcast", {
     room: 'login',
     message: {
-      username,
-      password,
-      output: outputRoom2
+      payload: {
+        email,
+        password
+      },
+      output: outputRoom3
     }
   })
 }
@@ -97,5 +124,6 @@ export {
   stop,
   run,
   all,
+  register,
   login
 }

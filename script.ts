@@ -6,9 +6,9 @@ users.run()
 // show all
 users.all()
 
-// username & password
-// users.login('demo', '1234')
-// users.register('demo', '1234')
+// auth
+// users.register('test@test.com','testman123', 'password')
+// users.login('test@test.com', 'password')
 
 
 // stop library
