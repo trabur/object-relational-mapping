@@ -14,3 +14,7 @@ access Prisma commands over Phoenix channels:
 Usernames and Passwords sync with Postgresql:
 - https://www.npmjs.com/package/pbkdf2
 - https://jwt.io/
+
+
+### developer documents
+make changes at `schema.prisma` then run `npx prisma migrate dev --preview-feature`

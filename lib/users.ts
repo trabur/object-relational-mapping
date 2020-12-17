@@ -72,11 +72,9 @@ function run () {
   })
 }
 
-function all () {
+function all (callback: any) {
   let outputRoom1 = uuidv4()
-  channel.on(`room:${outputRoom1}`, async function (message: any) {
-    console.log(message)
-  })
+  channel.on(`room:${outputRoom1}`, callback)
   channel.push("room:broadcast", {
     room: 'users',
     message: {
@@ -85,11 +83,9 @@ function all () {
   })
 }
   
-function register (email: any, username: any, password: any) {
+function register (email: any, username: any, password: any, callback: any) {
   let outputRoom2 = uuidv4()
-  channel.on(`room:${outputRoom2}`, async function (message: any) {
-    console.log(message)
-  })
+  channel.on(`room:${outputRoom2}`, callback)
   channel.push("room:broadcast", {
     room: 'register',
     message: {
@@ -103,11 +99,9 @@ function register (email: any, username: any, password: any) {
   })
 }
 
-function login (email: any, password: any) {
+function login (email: any, password: any, callback: any) {
   let outputRoom3 = uuidv4()
-  channel.on(`room:${outputRoom3}`, async function (message: any) {
-    console.log(message)
-  })
+  channel.on(`room:${outputRoom3}`, callback)
   channel.push("room:broadcast", {
     room: 'login',
     message: {
