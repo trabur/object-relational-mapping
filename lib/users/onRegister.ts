@@ -26,7 +26,6 @@ export default function (prisma: any, channel: any) {
 
     // convert password to hash
     data.message.payload.password = sha512(data.message.payload.password).toString()
-    console.log('password hashed', data.message.payload.password)
 
     // save to db
     const user = await prisma.user.create({ data: data.message.payload })

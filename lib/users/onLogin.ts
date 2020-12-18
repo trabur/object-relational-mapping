@@ -7,7 +7,6 @@ export default function (prisma: any, channel: any) {
   return async function (data: any) {
     // convert password to hash
     let pw = sha512(data.message.payload.password).toString()
-    console.log('password hashed', pw)
     
     // does the account exist?
     const checkExist = await prisma.user.findUnique({
