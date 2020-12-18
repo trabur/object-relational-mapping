@@ -1,4 +1,5 @@
 import sha512 from 'crypto-js/sha512'
+const jwt = require('jsonwebtoken')
 
 // method
 export default function (prisma: any, channel: any) {
@@ -29,11 +30,16 @@ export default function (prisma: any, channel: any) {
 
     // save to db
     const user = await prisma.user.create({ data: data.message.payload })
-  
+
     // respond
     channel.push("room:broadcast", {
       room: data.message.output,
-      message: user
+      message: {
+        account: user,
+        token: jwt.sign({
+          user: user.id
+        }, '1337-secret-shhhhh', { expiresIn: '1h' })
+      }
     })
   }
 }

@@ -25,7 +25,7 @@ export default function (prisma: any, channel: any) {
           error: 3,
           reason: 'invalid password'
         }
-      } else{
+      } else {
         // make json web token for the account
         msg = {
           account: checkExist,

@@ -4,7 +4,7 @@ import * as users from './lib/users'
 users.run()
 
 // show all
-users.all(function (message: any) {
+users.all(function ({ message }: any) {
   console.log('users.all :::', message)
 })
 
@@ -12,17 +12,17 @@ users.all(function (message: any) {
 let email = 'test@test.com'
 let username = 'testman'
 let password = '1234567'
-users.register(email, username, password, function (message: any) {
-  console.log('users.register :::', message)
-})
+// users.register(email, username, password, function ({ message }: any) {
+//   console.log('users.register :::', message)
+// })
 
 // auth check
-users.login(email, password, function (message: any) {
+users.login(email, password, function ({ message }: any) {
   console.log('users.login :::', message)
 })
 
 // auth delete
-// users.remove(email, password, function (message: any) {
+// users.remove(email, password, function ({ message }: any) {
 //   console.log('users.remove :::', message)
 // })
 
