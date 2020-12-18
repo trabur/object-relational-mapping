@@ -20,12 +20,14 @@ channel.join()
 let ref1: any
 let ref2: any
 let ref3: any
+let ref4: any
 
 
 // listener functions
 import onRegister from './users/onRegister'
 import onLogin from './users/onLogin'
 import onUsers from './users/onUsers'
+import onRemove from './users/onRemove'
 
 /******
  * trigger methods
@@ -35,6 +37,7 @@ function run () {
   ref1 = channel.on("room:register", onRegister(prisma, channel))
   ref2 = channel.on("room:login", onLogin(prisma, channel))
   ref3 = channel.on("room:users", onUsers(prisma, channel))
+  ref4 = channel.on("room:remove", onRemove(prisma, channel))
 }
 
 function stop () { 
@@ -42,6 +45,7 @@ function stop () {
   channel.off("room:register", ref1)
   channel.off("room:login", ref2)
   channel.off("room:users", ref3)
+  channel.off("room:remove", ref4)
 }
 
 /******
@@ -89,6 +93,21 @@ function login (email: any, password: any, callback: any) {
   })
 }
 
+function remove (email: any, password: any, callback: any) {
+  let outputRoom4 = uuidv4()
+  channel.on(`room:${outputRoom4}`, callback)
+  channel.push("room:broadcast", {
+    room: 'remove',
+    message: {
+      payload: {
+        email,
+        password
+      },
+      output: outputRoom4
+    }
+  })
+}
+
 /******
  * trigger library
  ******/
@@ -97,5 +116,6 @@ export {
   run,
   all,
   register,
-  login
+  login,
+  remove
 }

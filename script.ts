@@ -9,7 +9,7 @@ users.all(function (message: any) {
 })
 
 // auth confirm
-let email = 'test4@test.com'
+let email = 'test@test.com'
 let username = 'testman'
 let password = '1234567'
 users.register(email, username, password, function (message: any) {
@@ -21,6 +21,10 @@ users.login(email, password, function (message: any) {
   console.log('users.login :::', message)
 })
 
+// auth delete
+// users.remove(email, password, function (message: any) {
+//   console.log('users.remove :::', message)
+// })
 
 // stop library
 setTimeout(() => {
