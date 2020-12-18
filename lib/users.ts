@@ -1,7 +1,6 @@
 // libraries
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
-const jwt = require('jsonwebtoken')
 import { v4 as uuidv4 } from 'uuid';
 
 // elixir socket
