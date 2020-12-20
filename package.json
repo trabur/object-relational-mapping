@@ -1,6 +1,6 @@
 {
   "name": "67",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "devDependencies": {
     "@prisma/cli": "2.13.0",
