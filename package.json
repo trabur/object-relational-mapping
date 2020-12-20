@@ -1,5 +1,6 @@
 {
   "name": "script",
+  "version": "0.0.1",
   "license": "MIT",
   "devDependencies": {
     "@prisma/cli": "2.13.0",
