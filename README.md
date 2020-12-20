@@ -7,8 +7,8 @@ github:
 - https://github.com/trabur/dimension                   // frontend: platform = counter, ping, & cron
 - https://github.com/trabur/metaheap                    // frontend: platform = publishSubscribe
 - https://github.com/trabur/farmerless                  // frontend: platform = schedule
-- https://github.com/trabur/tyu67                       // frontend: platform = leaderElection & directMessage
-- https://github.com/trabur/burnfort                    // frontend: platform = accounts, keyValue, & cryptoKeyValue
+- https://github.com/trabur/tyu67                       // frontend: platform = leaderElection
+- https://github.com/trabur/burnfort                    // frontend: platform = accounts, directMessage, keyValue, & cryptoKeyValue
 
 ### production goals
 > elixir production: https://printedbasics.gigalixirapp.com/
