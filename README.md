@@ -4,7 +4,7 @@ github:
 - https://github.com/trabur/object-relational-mapping   // backend: node.js
 - https://github.com/trabur/channels                    // backend: elixir
 - https://github.com/trabur/printedbasics               // frontend: services = gallery, forums, members, etc...
-- https://github.com/trabur/dimension.click             // frontend: platform = counter, ping, & cron
+- https://github.com/trabur/dimension                   // frontend: platform = counter, ping, & cron
 - https://github.com/trabur/metaheap                    // frontend: platform = publishSubscribe
 - https://github.com/trabur/farmerless                  // frontend: platform = schedule
 - https://github.com/trabur/tyu67                       // frontend: platform = leaderElection & directMessage
