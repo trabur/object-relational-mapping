@@ -3,7 +3,7 @@ import * as tenants from './lib/tenants'
 import * as platform from './lib/tenants/platform'
 import * as services from './lib/tenants/services'
 
-export default {
+export {
   users,
   tenants,
   platform,
