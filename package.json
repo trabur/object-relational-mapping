@@ -1,6 +1,7 @@
 {
   "name": "67",
   "version": "0.0.5",
+  "type": "module",
   "devDependencies": {
     "@prisma/cli": "2.13.0",
     "@types/crypto-js": "^4.0.1",

@@ -4,8 +4,6 @@
     "outDir": "dist",
     "strict": true,
     "lib": ["esnext", "dom"],
-    "esModuleInterop": true,
-    "target": "es6",
-    "module": "commonjs"
+    "esModuleInterop": true
   }
 }
