@@ -2,6 +2,7 @@
   "name": "tyu",
   "version": "0.0.5",
   "main": "dist/index.js",
+  "type": "module",
   "devDependencies": {
     "@prisma/cli": "2.13.0",
     "@types/crypto-js": "^4.0.1",
