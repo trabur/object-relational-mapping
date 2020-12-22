@@ -1,4 +1,4 @@
-import * as users from './lib/users'
+import * as users from '../src/users'
 
 /**
  * users
@@ -45,7 +45,7 @@ let tenantId = ''
  */
 let tenantToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNDM4N2FjNzEtYTkyOC00MGJjLTg4M2UtOTk4OThiZTAyNDVlIiwiaWF0IjoxNjA4MzI1Nzg4LCJleHAiOjE2MDgzMjkzODh9.yJFZVTDXpE_eqortIeWm2kacbZGnGBTElnExg66G554'
 
-// import * as tenants from './lib/tenants'
+// import * as tenants from '../src/tenants'
 
 /**
  * tenants
@@ -87,7 +87,7 @@ let servicesBilling = {
 //   console.log('tenants.create :::', message)
 // })
 
-// import * as platform from './lib/tenants/platform'
+// import * as platform from '../src/tenants/platform'
 
 /**
  * cron

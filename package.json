@@ -1,7 +1,6 @@
 {
   "name": "tyu",
   "version": "0.0.5",
-  "type": "module",
   "main": "dist/index.js",
   "devDependencies": {
     "@prisma/cli": "2.13.0",

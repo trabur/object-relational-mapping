@@ -19,8 +19,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.services = exports.platform = exports.tenants = exports.users = void 0;
 const users = __importStar(require("./users"));
+exports.users = users;
 const tenants = __importStar(require("./tenants"));
+exports.tenants = tenants;
 const platform = __importStar(require("./tenants/platform"));
+exports.platform = platform;
 const services = __importStar(require("./tenants/services"));
+exports.services = services;
 //# sourceMappingURL=index.js.map
