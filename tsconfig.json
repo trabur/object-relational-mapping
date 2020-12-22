@@ -4,8 +4,9 @@
         "es6"
      ],
      "target": "es6",
-     "module": "commonjs",
+     "module": "es2015",
      "moduleResolution": "node",
+     "isolatedModules": true,
      "outDir": "dist",
      "resolveJsonModule": true,
      "emitDecoratorMetadata": true,

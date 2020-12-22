@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const sha512_1 = __importDefault(require("crypto-js/sha512"));
+import sha512 from 'crypto-js/sha512';
 const jwt = require('jsonwebtoken');
 // method
-function default_1(prisma, channel) {
+export default function (prisma, channel) {
     // trigger
     return function (data) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,7 +32,7 @@ function default_1(prisma, channel) {
                 return; // it exists; we have no need to continue creation
             }
             // convert password to hash
-            data.message.payload.password = sha512_1.default(data.message.payload.password).toString();
+            data.message.payload.password = sha512(data.message.payload.password).toString();
             // save to db
             const user = yield prisma.user.create({ data: data.message.payload });
             // respond
@@ -53,5 +48,4 @@ function default_1(prisma, channel) {
         });
     };
 }
-exports.default = default_1;
 //# sourceMappingURL=onRegister.js.map
