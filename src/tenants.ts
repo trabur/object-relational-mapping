@@ -1,5 +1,5 @@
 // libraries
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../prisma/node_modules/.prisma/client'
 const prisma = new PrismaClient()
 import { v4 as uuidv4 } from 'uuid';
 
