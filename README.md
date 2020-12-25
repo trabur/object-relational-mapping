@@ -10,6 +10,12 @@ github:
 - https://github.com/trabur/tyu67                       // frontend: platform = leaderElection
 - https://github.com/trabur/burnfort                    // frontend: platform = accounts, directMessage, keyValue, & cryptoKeyValue
 
+### begin
+```bash
+$ cd ./prisma
+$ npx prisma generate
+```
+
 ### production goals
 > elixir production: https://printedbasics.gigalixirapp.com/
 > node.js production: http://app.printedbasics.com
