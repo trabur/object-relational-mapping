@@ -3,7 +3,7 @@
       "lib": [
          "es6"
       ],
-      "target": "es6",
+      "target": "ES5",
       "moduleResolution": "node",
       "isolatedModules": true,
       "outDir": "dist",

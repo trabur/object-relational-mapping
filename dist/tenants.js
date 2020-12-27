@@ -1,38 +1,51 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.remove = exports.login = exports.register = exports.all = exports.run = exports.stop = void 0;
 // libraries
-import { PrismaClient } from '../prisma/node_modules/.prisma/client';
-const prisma = new PrismaClient();
-import { v4 as uuidv4 } from 'uuid';
+var client_1 = require("../prisma/node_modules/.prisma/client");
+var prisma = new client_1.PrismaClient();
+var uuid_1 = require("uuid");
 // elixir socket
 var w3cwebsocket = require("websocket").w3cwebsocket;
 var Socket = require("phoenix").Socket;
 var socket = new Socket("wss://printedbasics.gigalixirapp.com/socket", { transport: w3cwebsocket });
 socket.connect();
 // phoenix channel
-let channel = socket.channel("MAIN", { token: "abc" });
+var channel = socket.channel("MAIN", { token: "abc" });
 channel.join()
-    .receive("ok", ({ messages }) => console.log("joined MAIN channel", messages))
-    .receive("error", ({ reason }) => console.log("failed to join MAIN channel", reason))
-    .receive("timeout", () => console.log("still waiting..."));
+    .receive("ok", function (_a) {
+    var messages = _a.messages;
+    return console.log("joined MAIN channel", messages);
+})
+    .receive("error", function (_a) {
+    var reason = _a.reason;
+    return console.log("failed to join MAIN channel", reason);
+})
+    .receive("timeout", function () { return console.log("still waiting..."); });
 // listener references
-let ref1;
-let ref2;
-let ref3;
-let ref4;
+var ref1;
+var ref2;
+var ref3;
+var ref4;
 // listener functions
-import onRegister from './users/onRegister';
-import onLogin from './users/onLogin';
-import onUsers from './users/onUsers';
-import onRemove from './users/onRemove';
+var onRegister_1 = __importDefault(require("./users/onRegister"));
+var onLogin_1 = __importDefault(require("./users/onLogin"));
+var onUsers_1 = __importDefault(require("./users/onUsers"));
+var onRemove_1 = __importDefault(require("./users/onRemove"));
 /******
  * trigger methods
  ******/
 function run() {
     // start listening
-    ref1 = channel.on("room:register", onRegister(prisma, channel));
-    ref2 = channel.on("room:login", onLogin(prisma, channel));
-    ref3 = channel.on("room:users", onUsers(prisma, channel));
-    ref4 = channel.on("room:remove", onRemove(prisma, channel));
+    ref1 = channel.on("room:register", onRegister_1.default(prisma, channel));
+    ref2 = channel.on("room:login", onLogin_1.default(prisma, channel));
+    ref3 = channel.on("room:users", onUsers_1.default(prisma, channel));
+    ref4 = channel.on("room:remove", onRemove_1.default(prisma, channel));
 }
+exports.run = run;
 function stop() {
     // quit listening
     channel.off("room:register", ref1);
@@ -40,12 +53,13 @@ function stop() {
     channel.off("room:users", ref3);
     channel.off("room:remove", ref4);
 }
+exports.stop = stop;
 /******
  * trigger actions
  ******/
 function all(callback) {
-    let outputRoom1 = uuidv4();
-    channel.on(`room:${outputRoom1}`, callback);
+    var outputRoom1 = uuid_1.v4();
+    channel.on("room:" + outputRoom1, callback);
     channel.push("room:broadcast", {
         room: 'users',
         message: {
@@ -53,51 +67,51 @@ function all(callback) {
         }
     });
 }
+exports.all = all;
 function register(email, username, password, callback) {
-    let outputRoom2 = uuidv4();
-    channel.on(`room:${outputRoom2}`, callback);
+    var outputRoom2 = uuid_1.v4();
+    channel.on("room:" + outputRoom2, callback);
     channel.push("room:broadcast", {
         room: 'register',
         message: {
             payload: {
-                email,
-                username,
-                password,
+                email: email,
+                username: username,
+                password: password,
             },
             output: outputRoom2
         }
     });
 }
+exports.register = register;
 function login(email, password, callback) {
-    let outputRoom3 = uuidv4();
-    channel.on(`room:${outputRoom3}`, callback);
+    var outputRoom3 = uuid_1.v4();
+    channel.on("room:" + outputRoom3, callback);
     channel.push("room:broadcast", {
         room: 'login',
         message: {
             payload: {
-                email,
-                password
+                email: email,
+                password: password
             },
             output: outputRoom3
         }
     });
 }
+exports.login = login;
 function remove(email, password, callback) {
-    let outputRoom4 = uuidv4();
-    channel.on(`room:${outputRoom4}`, callback);
+    var outputRoom4 = uuid_1.v4();
+    channel.on("room:" + outputRoom4, callback);
     channel.push("room:broadcast", {
         room: 'remove',
         message: {
             payload: {
-                email,
-                password
+                email: email,
+                password: password
             },
             output: outputRoom4
         }
     });
 }
-/******
- * trigger library
- ******/
-export { stop, run, all, register, login, remove };
+exports.remove = remove;
 //# sourceMappingURL=tenants.js.map
