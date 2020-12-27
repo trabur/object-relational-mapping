@@ -5,6 +5,7 @@
     "start": "ts-node src/index.ts",
     "build": "tsc"
   },
+  "main": "dist/index.js",
   "dependencies": {
     "crypto-js": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
