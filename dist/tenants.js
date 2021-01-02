@@ -18,11 +18,11 @@ var channel = socket.channel("MAIN", { token: "abc" });
 channel.join()
     .receive("ok", function (_a) {
     var messages = _a.messages;
-    return console.log("joined MAIN channel", messages);
+    return console.log("tenants: joined MAIN channel", messages);
 })
     .receive("error", function (_a) {
     var reason = _a.reason;
-    return console.log("failed to join MAIN channel", reason);
+    return console.log("tenants: failed to join MAIN channel", reason);
 })
     .receive("timeout", function () { return console.log("still waiting..."); });
 /******
