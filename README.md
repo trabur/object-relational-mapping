@@ -1,7 +1,10 @@
 OBJECT RELATIONAL MAPPING
 ========
+
+
 github:
-- https://github.com/trabur/object-relational-mapping   // backend: node.js
+- https://github.com/trabur/listener-fuctions           // backend: node.js
+- https://github.com/trabur/object-relational-mapping   // libend: node.js
 - https://github.com/trabur/channels                    // backend: elixir
 - https://github.com/trabur/printedbasics               // frontend: services = gallery, forums, members, etc...
 - https://github.com/trabur/dimension                   // frontend: platform = counter, ping, & cron
