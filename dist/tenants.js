@@ -4,9 +4,14 @@ exports.remove = exports.login = exports.register = exports.all = void 0;
 // libraries
 var uuid_1 = require("uuid");
 // elixir socket
-var w3cwebsocket = require("websocket").w3cwebsocket;
 var Socket = require("phoenix").Socket;
-var socket = new Socket("wss://printedbasics.gigalixirapp.com/socket", { transport: w3cwebsocket });
+if (typeof process === 'object') {
+    var w3cwebsocket = require("websocket").w3cwebsocket;
+    var socket = new Socket("wss://printedbasics.gigalixirapp.com/socket", { transport: w3cwebsocket }); // node.js
+}
+else {
+    var socket = new Socket("wss://printedbasics.gigalixirapp.com/socket"); // broswer
+}
 socket.connect();
 // phoenix channel
 var channel = socket.channel("MAIN", { token: "abc" });
