@@ -1,8 +1,13 @@
 OBJECT RELATIONAL MAPPING
 ========
 
+### project
+```bash
+$ npm run dev
+$ npm run build
+```
 
-github:
+### library overview
 - https://github.com/trabur/listener-fuctions           // backend: node.js
 - https://github.com/trabur/object-relational-mapping   // libend: node.js
 - https://github.com/trabur/channels                    // backend: elixir
@@ -13,11 +18,6 @@ github:
 - https://github.com/trabur/tyu67                       // frontend: platform = leaderElection
 - https://github.com/trabur/burnfort                    // frontend: platform = accounts, directMessage, keyValue, & cryptoKeyValue
 
-### begin
-```bash
-$ cd ./prisma
-$ npx prisma generate
-```
 
 ### production goals
 > elixir production: https://printedbasics.gigalixirapp.com/
@@ -35,6 +35,3 @@ Usernames and Passwords sync with Postgresql:
 - https://www.npmjs.com/package/pbkdf2
 - https://jwt.io/
 
-
-### developer documents
-make changes at `schema.prisma` then run `npx prisma migrate dev --preview-feature`

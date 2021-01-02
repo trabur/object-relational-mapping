@@ -1,13 +1,10 @@
-import * as users from '../src/users'
+import * as tyu from '../src/index'
 
 /**
  * users
  */
-// init users library
-users.run()
-
 // show all
-users.all(function ({ message }: any) {
+tyu.users.all(function ({ message }: any) {
   console.log('users.all :::', message)
 })
 
@@ -20,7 +17,7 @@ let password = '1234567'
 // })
 
 // auth check
-users.login(email, password, function ({ message }: any) {
+tyu.users.login(email, password, function ({ message }: any) {
   console.log('users.login :::', message)
 })
 
@@ -125,6 +122,5 @@ let job = function () {
 
 // stop all libraries
 setTimeout(() => {
-  users.stop()
   // cron.stop()
 }, 10000);
