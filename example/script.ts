@@ -1,4 +1,10 @@
-import * as tyu from '../src/index'
+import { TYU } from '../src/index'
+
+var Socket = require("phoenix").Socket
+var w3cwebsocket = require("websocket").w3cwebsocket
+var socket = new Socket("wss://printedbasics.gigalixirapp.com/socket", {transport: w3cwebsocket})
+
+let tyu = new TYU(socket)
 
 /**
  * users
