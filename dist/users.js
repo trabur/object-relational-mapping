@@ -1,12 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.remove = exports.login = exports.register = exports.all = exports.run = exports.stop = void 0;
+exports.remove = exports.login = exports.register = exports.all = void 0;
 // libraries
-var client_1 = require("../prisma/node_modules/.prisma/client");
-var prisma = new client_1.PrismaClient();
 var uuid_1 = require("uuid");
 // elixir socket
 var w3cwebsocket = require("websocket").w3cwebsocket;
@@ -25,35 +20,6 @@ channel.join()
     return console.log("failed to join MAIN channel", reason);
 })
     .receive("timeout", function () { return console.log("still waiting..."); });
-// listener references
-var ref1;
-var ref2;
-var ref3;
-var ref4;
-// listener functions
-var onRegister_1 = __importDefault(require("./users/onRegister"));
-var onLogin_1 = __importDefault(require("./users/onLogin"));
-var onUsers_1 = __importDefault(require("./users/onUsers"));
-var onRemove_1 = __importDefault(require("./users/onRemove"));
-/******
- * trigger methods
- ******/
-function run() {
-    // start listening
-    ref1 = channel.on("room:register", onRegister_1.default(prisma, channel));
-    ref2 = channel.on("room:login", onLogin_1.default(prisma, channel));
-    ref3 = channel.on("room:users", onUsers_1.default(prisma, channel));
-    ref4 = channel.on("room:remove", onRemove_1.default(prisma, channel));
-}
-exports.run = run;
-function stop() {
-    // quit listening
-    channel.off("room:register", ref1);
-    channel.off("room:login", ref2);
-    channel.off("room:users", ref3);
-    channel.off("room:remove", ref4);
-}
-exports.stop = stop;
 /******
  * trigger actions
  ******/
