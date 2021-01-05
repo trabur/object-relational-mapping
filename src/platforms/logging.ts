@@ -1,7 +1,7 @@
 // libraries
 import { v4 as uuidv4 } from 'uuid';
 
-export class Users {
+export class Logging {
   constructor(channel: any) {
     this.channel = channel
     return this
@@ -16,7 +16,7 @@ export class Users {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:broadcast", {
-      room: 'listen',
+      room: 'platforms:logging:listen',
       message: {
         payload: {
           id,
@@ -31,43 +31,12 @@ export class Users {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:broadcast", {
-      room: 'put',
+      room: 'platforms:logging:put',
       message: {
         payload: {
           id,
           token,
           data
-        },
-        output: outputRoom
-      }
-    })
-  }
-    
-  register (email: any, username: any, password: any, callback: any) {
-    let outputRoom = uuidv4()
-    this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
-      room: 'register',
-      message: {
-        payload: {
-          email,
-          username,
-          password,
-        },
-        output: outputRoom
-      }
-    })
-  }
-
-  login (email: any, password: any, callback: any) {
-    let outputRoom = uuidv4()
-    this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
-      room: 'login',
-      message: {
-        payload: {
-          email,
-          password
         },
         output: outputRoom
       }

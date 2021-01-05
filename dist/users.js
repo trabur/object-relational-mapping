@@ -4,39 +4,46 @@ exports.Users = void 0;
 // libraries
 var uuid_1 = require("uuid");
 var Users = /** @class */ (function () {
-    function Users(socket) {
-        this.socket = null;
+    function Users(channel) {
         this.channel = null;
-        // phoenix channel
-        this.channel = socket.channel("MAIN", { token: "abc" });
-        this.channel.join()
-            .receive("ok", function (_a) {
-            var messages = _a.messages;
-            return console.log("users: joined MAIN channel", messages);
-        })
-            .receive("error", function (_a) {
-            var reason = _a.reason;
-            return console.log("users: failed to join MAIN channel", reason);
-        })
-            .receive("timeout", function () { return console.log("still waiting..."); });
+        this.channel = channel;
         return this;
     }
     /******
      * trigger actions
      ******/
-    Users.prototype.all = function (callback) {
-        var outputRoom1 = uuid_1.v4();
-        this.channel.on("room:" + outputRoom1, callback);
+    Users.prototype.listen = function (id, token, callback) {
+        var outputRoom = uuid_1.v4();
+        this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:broadcast", {
-            room: 'users',
+            room: 'listen',
             message: {
-                output: outputRoom1
+                payload: {
+                    id: id,
+                    token: token
+                },
+                output: outputRoom
+            }
+        });
+    };
+    Users.prototype.put = function (id, data, token, callback) {
+        var outputRoom = uuid_1.v4();
+        this.channel.on("room:" + outputRoom, callback);
+        this.channel.push("room:broadcast", {
+            room: 'put',
+            message: {
+                payload: {
+                    id: id,
+                    token: token,
+                    data: data
+                },
+                output: outputRoom
             }
         });
     };
     Users.prototype.register = function (email, username, password, callback) {
-        var outputRoom2 = uuid_1.v4();
-        this.channel.on("room:" + outputRoom2, callback);
+        var outputRoom = uuid_1.v4();
+        this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:broadcast", {
             room: 'register',
             message: {
@@ -45,13 +52,13 @@ var Users = /** @class */ (function () {
                     username: username,
                     password: password,
                 },
-                output: outputRoom2
+                output: outputRoom
             }
         });
     };
     Users.prototype.login = function (email, password, callback) {
-        var outputRoom3 = uuid_1.v4();
-        this.channel.on("room:" + outputRoom3, callback);
+        var outputRoom = uuid_1.v4();
+        this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:broadcast", {
             room: 'login',
             message: {
@@ -59,21 +66,7 @@ var Users = /** @class */ (function () {
                     email: email,
                     password: password
                 },
-                output: outputRoom3
-            }
-        });
-    };
-    Users.prototype.remove = function (email, password, callback) {
-        var outputRoom4 = uuid_1.v4();
-        this.channel.on("room:" + outputRoom4, callback);
-        this.channel.push("room:broadcast", {
-            room: 'remove',
-            message: {
-                payload: {
-                    email: email,
-                    password: password
-                },
-                output: outputRoom4
+                output: outputRoom
             }
         });
     };

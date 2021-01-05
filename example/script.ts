@@ -1,16 +1,16 @@
-import { TYU } from '../src/index'
+import { ORM } from '../src/index'
 
 var Socket = require("phoenix").Socket
 var w3cwebsocket = require("websocket").w3cwebsocket
 var socket = new Socket("wss://printedbasics.gigalixirapp.com/socket", {transport: w3cwebsocket})
 
-let tyu = new TYU(socket)
+let orm = new ORM(socket)
 
 /**
  * users
  */
 // show all
-tyu.users.all(function ({ message }: any) {
+orm.users.all(function ({ message }: any) {
   console.log('users.all :::', message)
 })
 
@@ -23,7 +23,7 @@ let password = '1234567'
 // })
 
 // auth check
-tyu.users.login(email, password, function ({ message }: any) {
+orm.users.login(email, password, function ({ message }: any) {
   console.log('users.login :::', message)
 })
 
