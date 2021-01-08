@@ -16,7 +16,7 @@ var PublishSubscribe = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'platforms:publishSubscribe:listen',
+            vault: 'platforms:publishSubscribe:listen',
             message: {
                 payload: {
                     id: id,
@@ -30,7 +30,7 @@ var PublishSubscribe = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'platforms:publishSubscribe:put',
+            vault: 'platforms:publishSubscribe:put',
             message: {
                 payload: {
                     id: id,

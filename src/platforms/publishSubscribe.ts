@@ -16,7 +16,7 @@ export class PublishSubscribe {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'platforms:publishSubscribe:listen',
+      vault: 'platforms:publishSubscribe:listen',
       message: {
         payload: {
           id,
@@ -31,7 +31,7 @@ export class PublishSubscribe {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'platforms:publishSubscribe:put',
+      vault: 'platforms:publishSubscribe:put',
       message: {
         payload: {
           id,

@@ -16,7 +16,7 @@ var Counter = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'platforms:counter:listen',
+            vault: 'platforms:counter:listen',
             message: {
                 payload: {
                     id: id,
@@ -30,7 +30,7 @@ var Counter = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'platforms:counter:put',
+            vault: 'platforms:counter:put',
             message: {
                 payload: {
                     id: id,

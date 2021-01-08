@@ -16,7 +16,7 @@ export class Logging {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'platforms:logging:listen',
+      vault: 'platforms:logging:listen',
       message: {
         payload: {
           id,
@@ -31,7 +31,7 @@ export class Logging {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'platforms:logging:put',
+      vault: 'platforms:logging:put',
       message: {
         payload: {
           id,

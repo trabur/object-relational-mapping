@@ -16,7 +16,7 @@ var Users = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'users:listen',
+            vault: 'users:listen',
             message: {
                 payload: {
                     id: id,
@@ -30,7 +30,7 @@ var Users = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'users:put',
+            vault: 'users:put',
             message: {
                 payload: {
                     id: id,
@@ -45,7 +45,7 @@ var Users = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'users:register',
+            vault: 'users:register',
             message: {
                 payload: {
                     email: email,
@@ -60,7 +60,7 @@ var Users = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'users:login',
+            vault: 'users:login',
             message: {
                 payload: {
                     email: email,

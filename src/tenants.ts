@@ -16,7 +16,7 @@ export class Tenants {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'tenants',
+      vault: 'tenants',
       message: {
         output: outputRoom
       }
@@ -27,7 +27,7 @@ export class Tenants {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'register',
+      vault: 'register',
       message: {
         payload: {
           email,
@@ -43,7 +43,7 @@ export class Tenants {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'login',
+      vault: 'login',
       message: {
         payload: {
           email,
@@ -58,7 +58,7 @@ export class Tenants {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
     this.channel.push("room:secure", {
-      room: 'remove',
+      vault: 'remove',
       message: {
         payload: {
           email,

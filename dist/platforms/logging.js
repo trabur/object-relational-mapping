@@ -16,7 +16,7 @@ var Logging = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'platforms:logging:listen',
+            vault: 'platforms:logging:listen',
             message: {
                 payload: {
                     id: id,
@@ -30,7 +30,7 @@ var Logging = /** @class */ (function () {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
         this.channel.push("room:secure", {
-            room: 'platforms:logging:put',
+            vault: 'platforms:logging:put',
             message: {
                 payload: {
                     id: id,
