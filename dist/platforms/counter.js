@@ -15,7 +15,7 @@ var Counter = /** @class */ (function () {
     Counter.prototype.listen = function (id, token, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'platforms:counter:listen',
             message: {
                 payload: {
@@ -29,7 +29,7 @@ var Counter = /** @class */ (function () {
     Counter.prototype.put = function (id, data, token, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'platforms:counter:put',
             message: {
                 payload: {

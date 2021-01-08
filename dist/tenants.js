@@ -15,7 +15,7 @@ var Tenants = /** @class */ (function () {
     Tenants.prototype.allUserTenants = function (callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'tenants',
             message: {
                 output: outputRoom
@@ -25,7 +25,7 @@ var Tenants = /** @class */ (function () {
     Tenants.prototype.register = function (email, username, password, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'register',
             message: {
                 payload: {
@@ -40,7 +40,7 @@ var Tenants = /** @class */ (function () {
     Tenants.prototype.login = function (email, password, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'login',
             message: {
                 payload: {
@@ -54,7 +54,7 @@ var Tenants = /** @class */ (function () {
     Tenants.prototype.remove = function (email, password, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'remove',
             message: {
                 payload: {

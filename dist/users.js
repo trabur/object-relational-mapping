@@ -15,7 +15,7 @@ var Users = /** @class */ (function () {
     Users.prototype.listen = function (id, token, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'users:listen',
             message: {
                 payload: {
@@ -29,7 +29,7 @@ var Users = /** @class */ (function () {
     Users.prototype.put = function (id, data, token, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'users:put',
             message: {
                 payload: {
@@ -44,7 +44,7 @@ var Users = /** @class */ (function () {
     Users.prototype.register = function (email, username, password, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'users:register',
             message: {
                 payload: {
@@ -59,7 +59,7 @@ var Users = /** @class */ (function () {
     Users.prototype.login = function (email, password, callback) {
         var outputRoom = uuid_1.v4();
         this.channel.on("room:" + outputRoom, callback);
-        this.channel.push("room:broadcast", {
+        this.channel.push("room:secure", {
             room: 'users:login',
             message: {
                 payload: {
