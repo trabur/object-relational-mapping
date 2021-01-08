@@ -15,7 +15,7 @@ export class Users {
   listen (id: any, token: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'users:listen',
       message: {
         payload: {
@@ -30,7 +30,7 @@ export class Users {
   put (id: any, data: any, token: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'users:put',
       message: {
         payload: {
@@ -46,7 +46,7 @@ export class Users {
   register (email: any, username: any, password: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'users:register',
       message: {
         payload: {
@@ -62,7 +62,7 @@ export class Users {
   login (email: any, password: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'users:login',
       message: {
         payload: {

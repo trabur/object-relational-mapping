@@ -15,7 +15,7 @@ export class Tenants {
   allUserTenants (callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'tenants',
       message: {
         output: outputRoom
@@ -26,7 +26,7 @@ export class Tenants {
   register (email: any, username: any, password: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'register',
       message: {
         payload: {
@@ -42,7 +42,7 @@ export class Tenants {
   login (email: any, password: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'login',
       message: {
         payload: {
@@ -57,7 +57,7 @@ export class Tenants {
   remove (email: any, password: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'remove',
       message: {
         payload: {

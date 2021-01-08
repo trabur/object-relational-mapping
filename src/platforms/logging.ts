@@ -15,7 +15,7 @@ export class Logging {
   listen (id: any, token: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'platforms:logging:listen',
       message: {
         payload: {
@@ -30,7 +30,7 @@ export class Logging {
   put (id: any, data: any, token: any, callback: any) {
     let outputRoom = uuidv4()
     this.channel.on(`room:${outputRoom}`, callback)
-    this.channel.push("room:broadcast", {
+    this.channel.push("room:secure", {
       room: 'platforms:logging:put',
       message: {
         payload: {
