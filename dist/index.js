@@ -18,15 +18,15 @@ var ORM = /** @class */ (function () {
         // could be socket for node.js or web
         socket.connect();
         // phoenix channel
-        var channel = socket.channel("MAIN", { token: "abc" });
+        var channel = socket.channel("ROOM", { token: "abc" });
         channel.join()
             .receive("ok", function (_a) {
             var messages = _a.messages;
-            return console.log("joined MAIN channel", messages);
+            return console.log("joined ROOM channel", messages);
         })
             .receive("error", function (_a) {
             var reason = _a.reason;
-            return console.log("failed to join MAIN channel", reason);
+            return console.log("failed to join ROOM channel", reason);
         })
             .receive("timeout", function () { return console.log("still waiting..."); });
         // methods

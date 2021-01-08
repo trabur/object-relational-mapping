@@ -10,10 +10,10 @@ export class ORM {
     socket.connect()
     
     // phoenix channel
-    let channel = socket.channel("MAIN", {token: "abc"})
+    let channel = socket.channel("ROOM", {token: "abc"})
     channel.join()
-      .receive("ok", ({ messages }: any) => console.log("joined MAIN channel", messages))
-      .receive("error", ({ reason }: any) => console.log("failed to join MAIN channel", reason))
+      .receive("ok", ({ messages }: any) => console.log("joined ROOM channel", messages))
+      .receive("error", ({ reason }: any) => console.log("failed to join ROOM channel", reason))
       .receive("timeout", () => console.log("still waiting..."))
 
     // methods
