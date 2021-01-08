@@ -10,7 +10,7 @@ export class ORM {
     socket.connect()
     
     // phoenix channel
-    let channel = socket.channel("ROOM", {token: "abc"})
+    let channel = socket.channel("room:lobby", {})
     channel.join()
       .receive("ok", ({ messages }: any) => console.log("joined ROOM channel", messages))
       .receive("error", ({ reason }: any) => console.log("failed to join ROOM channel", reason))

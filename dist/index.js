@@ -18,7 +18,7 @@ var ORM = /** @class */ (function () {
         // could be socket for node.js or web
         socket.connect();
         // phoenix channel
-        var channel = socket.channel("ROOM", { token: "abc" });
+        var channel = socket.channel("room:lobby", {});
         channel.join()
             .receive("ok", function (_a) {
             var messages = _a.messages;
